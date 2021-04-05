@@ -1,0 +1,61 @@
+from pandas import read_csv
+from sklearn.model_selection import train_test_split	     
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+dataframe = read_csv(url, header=None)
+data = dataframe.values
+X, y = data[:, :-1], data[:, -1]                                                                         
+print(X.shape, y.shape)	         
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=1)
+print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)                                                                                    
+model = RandomForestClassifier(random_state=1)
+model.fit(X_train, y_train)	 
+yhat = model.predict(X_test)	
+acc = accuracy_score(y_test, yhat)	
+print('Accuracy: %.3f' % acc)
+
+Support Vector Machine:
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+acrene = datasets.load_acrene()
+X = acrene.data
+y = acrene.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+from sklearn.svm import SVC
+svm_model_linear = SVC(kernel = 'linear', C = 1).fit(X_train, y_train)
+svm_predictions = svm_model_linear.predict(X_test)
+accuracy = svm_model_linear.score(X_test, y_test)
+
+
+K-Nearest Neighbour Classifier:
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+iris = datasets.load_acrene()
+X = acrene.data
+y = acrene.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0)
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors = 7).fit(X_train, y_train)
+accuracy = knn.score(X_test, y_test)
+print accuracy
+
+Naive Bias:
+
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+iris = datasets.load_acrene()  
+X = acrene.data
+y = acrene.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 0) 
+from sklearn.naive_bayes import GaussianNB
+gnb = GaussianNB().fit(X_train, y_train)
+gnb_predictions = gnb.predict(X_test)
+accuracy = gnb.score(X_test, y_test)
+print accuracy
+
+
+
+
+
